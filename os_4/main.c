@@ -13,12 +13,13 @@ int fd;
 
 int main (int argc, char *argv[]){
 
-    int arg_len = strlen(argv[1]); 
-
     if (argc != 2){
 		printf("The number of arguments is different than required\n");
 		return 2;
 	}
+
+    int arg_len = strlen(argv[1]); 
+    
     if (arg_len > 255){
         printf("The len of the file is higher than required\n");
 		return 3;
@@ -108,7 +109,7 @@ int main (int argc, char *argv[]){
     } else if (id == 0){
         printf("Forking success in main.c\n");
 
-        if (execl("c.out", "c.out", NULL, (char *)NULL) == -1){
+        if (execl("c.out", "c.out", argv[1], (char *)NULL) == -1){
             printf("Error in executing child.c\n");
             return 18;
         }
